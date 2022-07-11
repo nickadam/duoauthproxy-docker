@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 AS build
+FROM ubuntu:20.04 AS build
 
 RUN apt-get update && apt-get install -y build-essential libffi-dev perl zlib1g-dev curl
 
@@ -37,7 +37,7 @@ USER root
 RUN curl -fsLo /tini https://github.com/krallin/tini/releases/download/v0.19.0/tini-amd64 && \
   chmod +x /tini
 
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 COPY --from=curl /tini /usr/local/bin/
 
