@@ -19,5 +19,12 @@ test ! -z "$SERVICE_ACCOUNT_PASSWORD_FILE" && echo $(cat "$SERVICE_ACCOUNT_PASSW
 # start duo stuff
 /etc/init.d/duoauthproxy start
 
+# check the duo process every 30 seconds
+while true
+do
+  pgrep python3 > /dev/null || kill 1
+  sleep 30
+done &
+
 # tail all the logs files
 tail -f $(find /opt/duoauthproxy/log/ -type f)
